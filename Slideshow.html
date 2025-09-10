@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Panditain! 🎉</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #530e22 0%, #831111 50%, #61040e90 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        .title{
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            font-family: "Titan One", sans-serif;
+            font-size: 3rem;
+            flex-direction: column;
+            perspective: 1000px;
+        }
+        .title .happy, .title .birthday{
+            position: relative;
+            text-shadow: 4px 4px var(--color-black), 
+                        -4px 4px var(--color-black), 
+                        4px -4px var(--color-black), 
+                        -4px -4px var(--color-black), 
+                        4px 8px 0 var(--color-black);
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+        }
+        .title .happy{
+            color: var(--color-white);
+        }
+        .title .happy span, .title .birthday span{
+            transform: translateY(50px);
+            opacity: 0;
+            visibility: hidden;
+            animation: txtTranslateY .5s var(--t) forwards;
+        }
+        /* Floating hearts animation */
+        .hearts {
+            position: fixed;
+            top: -10vh;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .heart {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 20px;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.7;
+        }
+        
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .heart:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .heart:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .heart:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .heart:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .heart:nth-child(7) { left: 70%; animation-delay: 1.5s; }
+        .heart:nth-child(8) { left: 80%; animation-delay: 2.5s; }
+        .heart:nth-child(9) { left: 90%; animation-delay: 3.5s; }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Slideshow container */
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            animation: slideIn 0.8s ease-in-out;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .slide-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide-content::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef, #ff9a9e);
+            border-radius: 25px;
+            z-index: -1;
+            animation: gradientBorder 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradientBorder {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .image-container {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            overflow: hidden;
+            border: 5px solid #fff;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: imageFloat 4s ease-in-out infinite;
+        }
+        
+        @keyframes imageFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(2deg);
+            }
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.1);
+        }
+        
+        .pickup-line {
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            color: #d63384;
+            font-weight: 600;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes textGlow {
+            from {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            to {
+                text-shadow: 2px 2px 20px rgba(214, 51, 132, 0.4);
+            }
+        }
+        
+        .description {
+            font-size: 18px;
+            color: #6c757d;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        
+        /* Navigation buttons */
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            color: #d63384;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .nav-button:hover {
+            background: #d63384;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .prev {
+            left: 30px;
+        }
+        
+        .next {
+            right: 30px;
+        }
+        
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+        .progress-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .progress-dot.active {
+            background: #d63384;
+            transform: scale(1.3);
+        }
+        
+        /* Title */
+        .main-title {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Dancing Script', cursive;
+            font-size: 48px;
+            color: #d63384;
+            font-weight: 700;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            animation: titlePulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes titlePulse {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+            }
+        }
+        
+        /* Auto-play controls */
+        .controls {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+        
+        .play-pause-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #d63384;
+            border-radius: 25px;
+            padding: 10px 20px;
+            color: #d63384;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .play-pause-btn:hover {
+            background: #d63384;
+            color: white;
+        }
+        
+        /* Sparkles animation */
+        .sparkle {
+            position: absolute;
+            color: #ffd700;
+            font-size: 16px;
+            animation: sparkle 2s infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 36px;
+                top: 20px;
+            }
+            
+            .slide-content {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+            
+            .image-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .pickup-line {
+                font-size: 24px;
+            }
+            
+            .nav-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .prev {
+                left: 20px;
+            }
+            
+            .next {
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts -->
+    <div class="hearts">
+        <div class="heart">💕</div>
+        <div class="heart">💖</div>
+        <div class="heart">💗</div>
+        <div class="heart">💝</div>
+        <div class="heart">💕</div>
+        <div class="heart">💖</div>
+        <div class="heart">💗</div>
+        <div class="heart">💝</div>
+        <div class="heart">💕</div>
+    </div>
+    
+    <!-- Main title -->
+    <div class="title">
+        <h1 class="happy">
+            <span style="--t: 4s;">H</span>
+            <span style="--t: 4.2s;">a</span>
+            <span style="--t: 4.4s;">p</span>
+            <span style="--t: 4.6s;">p</span>
+            <span style="--t: 4.8s;">y</span>
+        </h1>
+        <h1 class="birthday">
+            <span style="--t: 5s;">B</span>
+            <span style="--t: 5.2s;">i</span>
+            <span style="--t: 5.4s;">r</span>
+            <span style="--t: 5.6s;">t</span>
+            <span style="--t: 5.8s;">h</span>
+            <span style="--t: 6s;">d</span>
+            <span style="--t: 6.2s;">a</span>
+            <span style="--t: 6.4s;">y</span>
+        </h1>
+        <div class="hat">
+            <img src="./images/hat.png" alt="" width="130">
+        </div>
+    </div>
+    
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+        <!-- Navigation buttons -->
+        <button class="nav-button prev" onclick="changeSlide(-1)">❮</button>
+        <button class="nav-button next" onclick="changeSlide(1)">❯</button>
+        
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <div class="slide-content">
+                <div class="image-container">
+                    <img src="images/sld1.jpg" alt="Beautiful moment" id="img1">
+                </div>
+                <div class="pickup-line">Are you a magician? Because whenever I look at you, everyone else disappears! ✨</div>
+                <div class="description">Your beauty lights up every room you enter, making ordinary moments extraordinary.</div>
+            </div>
+        </div>
+        
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="image-container">
+                    <img src="images/sld2.jpg" alt="Brilliant smile" id="img2">
+                </div>
+                <div class="pickup-line">If intelligence were measured in brightness, you'd outshine all the stars! 🌟</div>
+                <div class="description">Your brilliant mind and radiant spirit make you absolutely captivating.</div>
+            </div>
+        </div>
+        
+        <!-- Slide 3 -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="image-container">
+                    <img src="images/sld3.jpg" alt="Graceful moment" id="img3">
+                </div>
+                <div class="pickup-line">Are you made of copper and tellurium? Because you're Cu-Te! 💖</div>
+                <div class="description">Your grace and elegance make every moment with you feel like a fairy tale.</div>
+            </div>
+        </div>
+        
+        <!-- Slide 4 -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="image-container">
+                    <img src="images/sld4.jpg" alt="Joyful expression" id="img4">
+                </div>
+                <div class="pickup-line">Do you have a name, or can I call you mine? 💕</div>
+                <div class="description">Your joyful spirit and infectious smile brighten up even the cloudiest days.</div>
+            </div>
+        </div>
+        
+        <!-- Slide 5 -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="image-container">
+                    <img src="images/sld3.gif" alt="Perfect moment" id="img5">
+                </div>
+                <div class="pickup-line">If beauty were time, you'd be an eternity! ⏰💝</div>
+                <div class="description">Every moment captured with you is a treasure worth keeping forever.</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Progress bar -->
+    <div class="progress-bar">
+        <div class="progress-dot active" onclick="currentSlide(1)"></div>
+        <div class="progress-dot" onclick="currentSlide(2)"></div>
+        <div class="progress-dot" onclick="currentSlide(3)"></div>
+        <div class="progress-dot" onclick="currentSlide(4)"></div>
+        <div class="progress-dot" onclick="currentSlide(5)"></div>
+    </div>
+    
+    <!-- Controls -->
+    <div class="controls">
+        <button class="play-pause-btn" onclick="toggleAutoPlay()" id="playPauseBtn">⏸️ Pause</button>
+    </div>
+    
+    <script>
+        let slideIndex = 1;
+        let autoPlayInterval;
+        let isAutoPlaying = true;
+        
+        // Initialize slideshow
+        document.addEventListener('DOMContentLoaded', function() {
+            startAutoPlay();
+            addSparkles();
+        });
+        
+        // Auto-play functionality
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(() => {
+                changeSlide(1);
+            }, 4000);
+        }
+        
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+        
+        function toggleAutoPlay() {
+            const btn = document.getElementById('playPauseBtn');
+            if (isAutoPlaying) {
+                stopAutoPlay();
+                btn.textContent = '▶️ Play';
+                isAutoPlaying = false;
+            } else {
+                startAutoPlay();
+                btn.textContent = '⏸️ Pause';
+                isAutoPlaying = true;
+            }
+        }
+        
+        // Slide navigation
+        function changeSlide(n) {
+            showSlide(slideIndex += n);
+        }
+        
+        function currentSlide(n) {
+            showSlide(slideIndex = n);
+        }
+        
+        function showSlide(n) {
+            const slides = document.getElementsByClassName('slide');
+            const dots = document.getElementsByClassName('progress-dot');
+            
+            if (n > slides.length) { slideIndex = 1; }
+            if (n < 1) { slideIndex = slides.length; }
+            
+            // Hide all slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+            }
+            
+            // Remove active class from all dots
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove('active');
+            }
+            
+            // Show current slide and activate corresponding dot
+            slides[slideIndex - 1].classList.add('active');
+            dots[slideIndex - 1].classList.add('active');
+        }
+        
+        // Add sparkles animation
+        function addSparkles() {
+            const slideContents = document.querySelectorAll('.slide-content');
+            
+            slideContents.forEach(content => {
+                setInterval(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.textContent = '✨';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    
+                    content.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 2000);
+                }, 3000);
+            });
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === ' ') {
+                e.preventDefault();
+                toggleAutoPlay();
+            }
+        });
+        
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                changeSlide(1); // Swipe left, next slide
+            }
+            if (touchEndX > touchStartX + 50) {
+                changeSlide(-1); // Swipe right, previous slide
+            }
+        }
+        
+        // Replace placeholder images with uploaded files
+        // You'll need to update these paths with your actual image files
+        function loadImages() {
+            // Update these with your actual image file names
+            const imageFiles = [
+                '/images/sld1.jpg', // Replace with actual filename
+                '/images/sld2.jpg', // Replace with actual filename
+                '/images/sld3.jpg', // Replace with actual filename
+                '/images/sld4.jpg', // Replace with actual filename
+                '/images/sld3.gif'  // Replace with actual filename
+            ];
+            
+            imageFiles.forEach((filename, index) => {
+                const img = document.getElementById(`img${index + 1}`);
+                img.src = filename;
+                img.onerror = function() {
+                    // Fallback to a gradient background if image doesn't load
+                    this.style.display = 'none';
+                    this.parentElement.style.background = `linear-gradient(45deg, #ff9a9e, #fecfef)`;
+                    this.parentElement.innerHTML += `<div style="display: flex; align-items: center; justify-content: center; height: 100%; font-size: 48px;">📸</div>`;
+                };
+            });
+        }
+        
+        // Load images when page loads
+        loadImages();
+    </script>
+</body>
+</html>
